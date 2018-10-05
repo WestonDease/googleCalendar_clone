@@ -5,8 +5,7 @@ var Schema = mongoose.Schema;
 var YearSchema = new Schema ({
     yearNum: {
         type: Number,
-        required: true,
-        unique: true
+        required: true
     },
     isLeapYear: {
         type: Boolean,
