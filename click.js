@@ -5,7 +5,7 @@ var divId = 0;
 
 /**
  * REMEMBER TO MOVE THE generateDivs() FUNCTION TO EITHER ANOTHER FILE OR SERVER.JS
- *
+ * REMEMBER TO ADD THE TWO NECESSARY GLOBAL VARIABLES, 'view' AND 'viewDate'
  */
 
 
@@ -41,7 +41,7 @@ const clickItemAdd(divID, view, viewDate) {
 const generateDivs(view) {
   var limit = 0;
   if(view == "month") {
-    limit = 7 * 5;
+    limit = 7 * 5; // 7 * 5 represent the colums * rows that should be displayed the month view
   } else if (view == "week") {
     limit = 7 * 24;
   } else if (view == "day") {
