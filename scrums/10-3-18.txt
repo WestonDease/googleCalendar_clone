@@ -1,0 +1,19 @@
+10/3/18
+Scrum
+
+Weston: 
+	Yesterday: In class discussion/work
+	Today: api-routes and schemas, also components diagram
+	Blockers: Understanding relationship to database needs
+
+Raj:
+	Yesterday: In class discussion/work
+	Today: Making Year and month object
+	Blockers: Understanding relationship to database needs
+Andrew:
+	Yesterday: In class work/discussion
+	Today: Diagramming program structure 
+	Blockers: Understanding relationship to database needs
+Not Present:
+	Stone
+	Coulter
