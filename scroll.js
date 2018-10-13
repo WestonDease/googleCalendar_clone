@@ -1,53 +1,84 @@
-var dayOfWeek;
-var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']; //array of the days of the week
+$(function () {
 
-//function to get the day of the week based on the date Ex: getDayOfWeek('03', '12', '2013')
-const getDayOfWeek = function(month, day, year) {
+
+let dayOfWeek;
+let days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']; //array of the days of the week
+
+//function to get the day of the week based on the date Ex: getNumberDayOfWeek('03', '12', '2013')
+
+const getNumberDayOfWeek = function(month, day, year) {
     var day = new Date(`${month}/${day}/${year}`);
-    var dayNum = day.getDay();
-    dayOfWeek = days[dayNum];
-    return dayOfWeek
+    let dayNum = day.getDay();
+    return dayNum+1;
 };
 
+//render function using ajax
+// const render = function() {
+//     $('.box').empty();
+//     $.ajax({ url: '/api/calendar', method: 'GET' })
+//           .then(function (data) {
+//               let htmlstr = '';
+//               data.forEach(element => {
+//                 htmlstr += `<h5 class="card-title">${element.content}</h5>`;
+//                 htmlstr += `<i id="xButton" class="fas fa-times"></i>`;
+//                 htmlstr += `</div>`;
+//               });
+//               $('#holder').html(htmlstr);
+//           })
+//           .catch(function (err) {
+//               console.log(err);
+//           });
+// }
 
 //today's date and all the parameters of the date and time
-var today = new Date(); 
-var dd = today.getDate();
-var mm = today.getMonth()+1; 
-var yyyy = today.getFullYear();
-var todayDayOfWeek = getDayOfWeek(mm, dd, yyyy);
+let today = new Date(); 
+let dd = today.getDate();
+let mm = today.getMonth()+1; 
+let yyyy = today.getFullYear();
+let todayNumberDayOfWeek = getNumberDayOfWeek(mm, dd, yyyy);
 
 //array of the names of the months and monthName is assigned to current month
 const arrMonth = ["","January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"];
-var monthName = arrMonth[mm];
+let monthName = arrMonth[mm];
+const arrDayTotal = [0, 31 , 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+//fills in empty html objects
+$('.month').html(`${monthName}`);
+$('.year').html(`${yyyy}`);
+$(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
+ 
+//loop to fill in the rest of the week
+let z = 0; //counter variable that holds the value of a date
+for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
+    let diff = i - todayNumberDayOfWeek;
+    if (dd+diff < arrDayTotal[mm]) {
+        $(`.date${diff+todayNumberDayOfWeek}`).html(`${dd+diff}`);
+    }
+    else {
+        z = z + 1;
+        $(`.date${diff+todayNumberDayOfWeek}`).html(`${z}`);
+    }
+}
+z = arrDayTotal[mm-1] + 1;
+for (let i = todayNumberDayOfWeek-1; i >= 1; i--) {
+    let diff = todayNumberDayOfWeek - i;
+    if (dd+diff > 0) {
+        $(`.date${todayNumberDayOfWeek-diff}`).html(`${dd-diff}`);
+    }
+    else {
+        z = z - 1;
+        $(`.date${diff+todayNumberDayOfWeek}`).html(`${z}`);
+    }
+}
+
+
+ //function to run when right arrow is clicked
+$('#arrowright').on('click', function (event) {
+    event.preventDefault();
+    
+});
 
 // get the day of week of the first day of the month
-var day1MonthDOW = getDayOfWeek(mm ,'01', yyyy);
+let day1MonthDOW = getNumberDayOfWeek(mm ,'01', yyyy);
 
-
-// var dayTotal = 31;
-// if (monthName == "February") { //Assigns month name to variable monthName
-//     if (yyyy % 4 == 0) {
-//         dayTotal = 29;
-//     }
-//     else {
-//         dayTotal = 28;
-//     }
-// }
-// if (monthName == "April") {
-//     dayTotal = 30;
-// }
-// if (monthName == "June") { 
-//     dayTotal = 30;
-// }
-// if (monthName == "September") {
-//     dayTotal = 30;
-// }
-// if (monthName == "November") {
-//     dayTotal = 30;
-// }
-
-// var arrDaysOfMonth = [];
-// for (let i = 1; i <= dayTotal; i++) {//fill each position in the array with the number of the date
-//     arrDaysOfMonth[i] = i;
-// }
+});

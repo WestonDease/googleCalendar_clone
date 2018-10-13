@@ -1,21 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <title>Document</title>
 </head>
 <script src="https://code.jquery.com/jquery.js"></script>
-  <style>
-    body {
-    margin: 0;
-    display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    grid-template-columns: repeat(7, 1fr);
+<style>
+    main {
+    height: 100%;
 }
+body {
+    font-family: 'Poppins', sans-serif;
+}
+.buttonclass {
+  justify-content: center;
+  align-items: center;
+  display:inline-block;
+}
+.day{
+    font-size: 10px;
+    display: inline-block;
+}
+.date {
+    font-size: 20px;
+}
+.month {
+    color: gray;
+}
+.year {
+    color: gray;
+}
+.sun {
+    display: inline-block;
+}
+.mon {
+    display: inline-block;
+}
+.tue {
+    display: inline-block;
+}
+.wed {
+    display: inline-block;
+}
+.thu {
+    display: inline-block;
+}
+.fri {
+    display: inline-block;
+}
+.sat {
+    display: inline-block;
+}
+.date {
+}
+.date1 {
+    padding-left: 10%;
+    display: inline-block;
+}
+.date2 {
+    padding-left: 10%;
+    display: inline-block;
+}
+.date3 {
+    padding-left: 10%;
+    display: inline-block;
+}
+.date4 {
+    padding-left: 10%;
+    display: inline-block;
+}
+.date5 {
+    padding-left: 10%;
+    display: inline-block;
+}
+.date6 {
+    padding-left: 10%;
+    display: inline-block;
+}
+.date7 {
+    padding-left: 10%;
+    display: inline-block;
+}
+
 </style>
+
 <body>
-    
+    <div class="buttonclass">
+        <button id="arrowleft" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-left"></i></button>
+        <button id="arrowright" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-right"></i></button>
+        <div class="month"></div>
+        <div class="year"></div>
+    </div>
+    <div class="day">
+        <div class="sun">Sun</div>
+        <div class="mon">Mon</div>
+        <div class="tue">Tue</div>
+        <div class="wed">Wed</div>
+        <div class="thu">Thu</div>
+        <div class="fri">Fri</div>
+        <div class="sat">Sat</div>
+    </div>
+    <div class="date">
+        <div class="date1"></div>
+        <div class="date2"></div>
+        <div class="date3"></div>
+        <div class="date4"></div>
+        <div class="date5"></div>
+        <div class="date6"></div>
+        <div class="date7"></div>
+     </div>
+        <script src="./scroll.js"></script>
 </body>
+
 </html>
