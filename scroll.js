@@ -166,6 +166,13 @@ $('#arrowleft').on('click', function (event) {
             $(`.date${i}`).html(`${z}`);
         }
     }
+    for (let i = 1; i <= 7; i++) {
+        if ($(`.date${i}`).html()<=0) {
+            let x = $(`.date${i}`).html();
+            $(`.date${i}`).html(parseFloat(x)+parseFloat(arrDayTotal[1]));
+            
+        }
+    }
 
 });
 
