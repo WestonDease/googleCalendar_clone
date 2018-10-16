@@ -103,7 +103,7 @@ module.exports = function(app) {
 
   /// put routes
   app.put('/api/event/:event', function(req, res) {
-    db.Event.findOneAndUpdate(req.params.Event, { $set: { name: req.body.name , events: req.body.events , selected: req.body.selected } }, { new: true })
+    db.Event.findOneAndUpdate({name: req.params.eventName}, { $set: { name: req.body.name , events: req.body.events , selected: req.body.selected } }, { new: true })
     .then(function(dbItem) {
       console.log(dbItem);
       return res.json(dbItem);
@@ -128,9 +128,9 @@ module.exports = function(app) {
 
   
   //delete routes
-  app.delete('/api/events/:event', function(req, res) {
-    console.log(req.params.calendarName);
-    db.Calendar.findOneAndDelete({name: req.params.calendarName})
+  app.delete('/api/events/:eventName', function(req, res) {
+    console.log(req.params.eventName);
+    db.Event.findOneAndDelete({name: req.params.eventName})
     .then(function(dbItem) {
       console.log(dbItem);
       return res.json(dbItem);

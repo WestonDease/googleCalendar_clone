@@ -30,12 +30,9 @@ mongoose.connect(
     }
 );
 
-//global variables
-// var state = {
-//     date = new Date(),
-//     view = ""
-// }
-
+app.get('/', function(request, response) {
+    response.sendFile(path.join(__dirname, "./index.html"));
+  });
 
 // Starts our server on the predefined PORT
 app.listen(PORT, function(){
