@@ -77,11 +77,26 @@ for (let i = todayNumberDayOfWeek-1; i >= 1; i--) {
 $('#arrowright').on('click', function (event) {
     event.preventDefault();
     dd = dd + 7;
+    if (dd > arrDayTotal[mm]) {
+        dd = dd - arrDayTotal[mm];
+        mm = mm + 1;
+        if (mm == 13) {
+            yyyy = yyyy + 1;
+            $('.year').html(`${yyyy}`);
+            mm = 1;
+            monthName = arrMonth[mm];
+            $('.month').html(`${monthName}`);
+        }
+        else {
+            monthName = arrMonth[mm];
+            $('.month').html(`${monthName}`);
+        }
+    }
     $(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
     z = 0;
     for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
         let diff = i - todayNumberDayOfWeek;
-        if ((dd+diff) < arrDayTotal[mm]) {
+        if ((dd+diff) <= arrDayTotal[mm]) {
             $(`.date${diff+todayNumberDayOfWeek}`).html(`${dd+diff}`);
         }
         else {
@@ -98,20 +113,33 @@ $('#arrowright').on('click', function (event) {
         else {
             z = z + 1;
             $(`.date${todayNumberDayOfWeek-diff}`).html(`${z}`);
-            mm = mm + 1;
         }
     }
-
 });
 
 //function to run when left arrow is clicked
 $('#arrowleft').on('click', function (event) {
     event.preventDefault();
     dd = dd - 7;
+    if (dd <= 0) {
+        dd = arrDayTotal[mm] + dd;
+        mm = mm - 1;
+        if (mm == 0) {
+            yyyy = yyyy - 1;
+            $('.year').html(`${yyyy}`);
+            mm = 12;
+            monthName = arrMonth[mm];
+            $('.month').html(`${monthName}`);
+        }
+        else {
+            monthName = arrMonth[mm];
+            $('.month').html(`${monthName}`);
+        }
+    }
     $(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
     for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
         let diff = i - todayNumberDayOfWeek;
-        if (dd+diff < arrDayTotal[mm]) {
+        if (dd+diff <= arrDayTotal[mm]) {
             $(`.date${diff+todayNumberDayOfWeek}`).html(`${dd+diff}`);
         }
         else {
@@ -130,9 +158,8 @@ $('#arrowleft').on('click', function (event) {
             $(`.date${todayNumberDayOfWeek-diff}`).html(`${z}`);
         }
     }
+
 });
 
-// get the day of week of the first day of the month
-let day1MonthDOW = getNumberDayOfWeek(mm ,'01', yyyy);
 
 });
