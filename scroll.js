@@ -97,22 +97,29 @@ $('#arrowright').on('click', function (event) {
     for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
         let diff = i - todayNumberDayOfWeek;
         if ((dd+diff) <= arrDayTotal[mm]) {
-            $(`.date${diff+todayNumberDayOfWeek}`).html(`${dd+diff}`);
+            $(`.date${i}`).html(`${dd+diff}`);
         }
         else {
             z = z + 1;
-            $(`.date${diff+todayNumberDayOfWeek}`).html(`${z}`);
+            $(`.date${i}`).html(`${z}`);
         }
     }
     z = 0;
     for (let i = 1; i <= todayNumberDayOfWeek; i++) {
         let diff = todayNumberDayOfWeek - i;
         if (dd-diff <= arrDayTotal[mm]) {
-            $(`.date${todayNumberDayOfWeek-diff}`).html(`${dd-diff}`);
+            $(`.date${i}`).html(`${dd-diff}`);
         }
         else {
             z = z + 1;
-            $(`.date${todayNumberDayOfWeek-diff}`).html(`${z}`);
+            $(`.date${i}`).html(`${z}`);
+        }
+    }
+    for (let i = 1; i <= 7; i++) {
+        if ($(`.date${i}`).html()<=0) {
+            let x = $(`.date${i}`).html();
+            $(`.date${i}`).html(parseFloat(x)+parseFloat(arrDayTotal[1]));
+            
         }
     }
 });
@@ -122,8 +129,8 @@ $('#arrowleft').on('click', function (event) {
     event.preventDefault();
     dd = dd - 7;
     if (dd <= 0) {
-        dd = arrDayTotal[mm] + dd;
         mm = mm - 1;
+        dd = arrDayTotal[mm] + dd;
         if (mm == 0) {
             yyyy = yyyy - 1;
             $('.year').html(`${yyyy}`);
@@ -137,25 +144,26 @@ $('#arrowleft').on('click', function (event) {
         }
     }
     $(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
+    z = arrDayTotal[mm-1] + 1;
     for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
         let diff = i - todayNumberDayOfWeek;
         if (dd+diff <= arrDayTotal[mm]) {
-            $(`.date${diff+todayNumberDayOfWeek}`).html(`${dd+diff}`);
+            $(`.date${i}`).html(`${dd+diff}`);
         }
         else {
-            z = z + 1;
-            $(`.date${diff+todayNumberDayOfWeek}`).html(`${z}`);
+            z = z - 1;
+            $(`.date${i}`).html(`${z}`);
         }
     }
     z = arrDayTotal[mm-1] + 1;
     for (let i = 1; i <= todayNumberDayOfWeek; i++) {
         let diff = todayNumberDayOfWeek - i;
         if (dd-diff > 0) {
-            $(`.date${todayNumberDayOfWeek-diff}`).html(`${dd-diff}`);
+            $(`.date${i}`).html(`${dd-diff}`);
         }
         else {
             z = z - 1;
-            $(`.date${todayNumberDayOfWeek-diff}`).html(`${z}`);
+            $(`.date${i}`).html(`${z}`);
         }
     }
 
