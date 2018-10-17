@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 
 module.exports = function(app) {
 
+
+
   //get routes
   app.get('/api/events', function(req, res) {
     db.Event.find({})
@@ -32,36 +34,20 @@ module.exports = function(app) {
       res.json(err);
     });
   });
+
   
-  app.get('/api/date/:day', function(req, res) { //set up specific day
-    db.Day.find({})
+  
+  app.get('/api/date/:day', function(req, res) { //set up specific day 
+    const matchingEvents = [];
+    db.Event.find({})
     .then(function(data) {
+      data.forEach(event => {
+        if (event.date === req.params.day){
+          matchingEvents.push(event);
+        }
+      })
       // If any Books are found, send them to the client
-      res.json(data);
-    })
-    .catch(function(err) {
-      // If an error occurs, send it back to the client
-      res.json(err);
-    });
-  });
-
-  app.get('/api/date/:month', function(req, res) {
-    db.Month.find({})
-    .then(function(data) {
-      // If any Books are found, send them to the client
-      res.json(data);
-    })
-    .catch(function(err) {
-      // If an error occurs, send it back to the client
-      res.json(err);
-    });
-  });
-
-  app.get('/api/date/:year', function(req, res) {
-    db.Year.find({})
-    .then(function(data) {
-      // If any Books are found, send them to the client
-      res.json(data);
+      res.json(matchingEvents);
     })
     .catch(function(err) {
       // If an error occurs, send it back to the client
@@ -70,7 +56,7 @@ module.exports = function(app) {
   });
 
 
-
+  
   // post routes
   app.post('/api/events', function(req, res) {
     db.Event.create(req.body)

@@ -5,33 +5,21 @@ var Schema = mongoose.Schema;
 var EventSchema = new Schema ({
     title: {
         type: String,
-        required: true,
+        required: true
     },
 
     description: {
         type: String,
-        required: false,
+        required: false
     },
 
     date: {
         type: String,
-        required: true,
-
-    },
-
-    repeating: {
-        type: Boolean,
         required: true
     },
-
-    repeat: {
-        type: Array,
-        required: false
-    },
-
-    dayOfWeek: {
+    time: {
         type: String,
-        required: true
+        required: false
     }
 });
 
