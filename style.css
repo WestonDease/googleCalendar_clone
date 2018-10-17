@@ -10,6 +10,13 @@
     grid-template-columns: 8% 92%;
 
 }
+.buttonClass {
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+}
+
+/* establishes a grid element for the days and day numbers to sit in */
 .topBar {
     grid-row: 1;
     grid-column: 2;
@@ -18,7 +25,6 @@
     grid-template-columns: 1fr;
 
 }
-
 /* sets 1x7 grid of days of the weeks */
 .days{
     grid-row: 1 ;
