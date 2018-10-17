@@ -144,14 +144,14 @@ $('#arrowleft').on('click', function (event) {
         }
     }
     $(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
-    z = arrDayTotal[mm-1] + 1;
+    z = 0;
     for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
         let diff = i - todayNumberDayOfWeek;
         if (dd+diff <= arrDayTotal[mm]) {
             $(`.date${i}`).html(`${dd+diff}`);
         }
         else {
-            z = z - 1;
+            z = z + 1;
             $(`.date${i}`).html(`${z}`);
         }
     }
