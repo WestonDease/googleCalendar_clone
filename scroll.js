@@ -135,14 +135,12 @@ $('#arrowleft').on('click', function (event) {
             yyyy = yyyy - 1;
             $('.year').html(`${yyyy}`);
             mm = 12;
+            dd = arrDayTotal[mm] + dd;
+        }
             monthName = arrMonth[mm];
             $('.month').html(`${monthName}`);
-        }
-        else {
-            monthName = arrMonth[mm];
-            $('.month').html(`${monthName}`);
-        }
     }
+
     $(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
     z = 0;
     for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
