@@ -2,121 +2,97 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!--Link to stylesheets-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+crossorigin="anonymous"><!-- font awesome link-->
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<script src="https://code.jquery.com/jquery.js"></script>
-<style>
-    main {
-    height: 100%;
-}
-body {
-    font-family: 'Poppins', sans-serif;
-}
-.buttonclass {
-  justify-content: center;
-  align-items: center;
-  display:inline-block;
-}
-.day{
-    font-size: 10px;
-    display: inline-block;
-}
-.date {
-    font-size: 20px;
-}
-.month {
-    color: gray;
-}
-.year {
-    color: gray;
-}
-.sun {
-    display: inline-block;
-}
-.mon {
-    display: inline-block;
-}
-.tue {
-    display: inline-block;
-}
-.wed {
-    display: inline-block;
-}
-.thu {
-    display: inline-block;
-}
-.fri {
-    display: inline-block;
-}
-.sat {
-    display: inline-block;
-}
-.date {
-}
-.date1 {
-    padding-left: 10%;
-    display: inline-block;
-}
-.date2 {
-    padding-left: 10%;
-    display: inline-block;
-}
-.date3 {
-    padding-left: 10%;
-    display: inline-block;
-}
-.date4 {
-    padding-left: 10%;
-    display: inline-block;
-}
-.date5 {
-    padding-left: 10%;
-    display: inline-block;
-}
-.date6 {
-    padding-left: 10%;
-    display: inline-block;
-}
-.date7 {
-    padding-left: 10%;
-    display: inline-block;
-}
-
-</style>
 
 <body>
+  <!-- JS Links -->  
+  <script src="./viewChange.js"></script>
+  <script src="./scroll.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <div id="gridTitle">
+    <!-- define drop down as its own class so that it can be placed within gridTitle -->
+    <div class = "dropDown">
+            <!-- HTML form element for drop down menu -->
+            <select name="viewSelect">
+                <option value="month">month</option>
+                <option value="week">week</option>
+                <option value="day">day</option>
+              </select>
+    </div>
+  </div>
+  <div id="weekView">
+    <!-- top bar for days -->
     <div class="buttonclass">
-        <button id="arrowleft" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-left"></i></button>
-        <button id="arrowright" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-right"></i></button>
-        <div class="month"></div>
-        <div class="year"></div>
+      <button id="arrowleft" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-left"></i></button>
+      <button id="arrowright" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-right"></i></button>
+      <div class="month">1TEST1</div>
+      <div class="year">2TEST2</div>
     </div>
-    <div class="day">
-        <div class="sun">Sun</div>
-        <div class="mon">Mon</div>
-        <div class="tue">Tue</div>
-        <div class="wed">Wed</div>
-        <div class="thu">Thu</div>
-        <div class="fri">Fri</div>
-        <div class="sat">Sat</div>
+    <div class="topBar">
+      <div class="days">
+        <div class="mon">Monday</div>
+        <div class="tues">Tuesday</div>
+        <div class="wed">Wednesday</div>
+        <div class="thurs">Thursday</div>
+        <div class="fri">Friday</div>
+        <div class="sat">Saturday</div>
+        <div class="sun">Sunday</div>
+      </div>
+      <div class="dayNumbers">
+        <div class="date1">1</div>
+        <div class="date2">2</div>
+        <div class="date3">3</div>
+        <div class="date4">4</div>
+        <div class="date5">5</div>
+        <div class="date6">6</div>
+        <div class="date7">7</div>
+      </div>
     </div>
-    <div class="date">
-        <div class="date1"></div>
-        <div class="date2"></div>
-        <div class="date3"></div>
-        <div class="date4"></div>
-        <div class="date5"></div>
-        <div class="date6"></div>
-        <div class="date7"></div>
-     </div>
-        <script src="./scroll.js"></script>
+
+    <!-- side bar for hours -->
+    <div class="hours">
+      <div class="zero">12am</div>
+      <div class="one">1am</div>
+      <div class="two">2am</div>
+      <div class="three">3am</div>
+      <div class="four">4am</div>
+      <div class="five">5am</div>
+      <div class="six">6am</div>
+      <div class="seven">7am</div>
+      <div class="eight">8am</div>
+      <div class="nine">9am</div>
+      <div class="ten">10am</div>
+      <div class="eleven">11am</div>
+      <div class="twelve">12pm</div>
+      <div class="thirteen">1pm</div>
+      <div class="fourteen">2pm</div>
+      <div class="fifteen">3pm</div>
+      <div class="sixteen">4pm</div>
+      <div class="seventeen">5pm</div>
+      <div class="eighteen">6pm</div>
+      <div class="nineteen">7pm</div>
+      <div class="twenty">8pm</div>
+      <div class="twenty-one">9pm</div>
+      <div class="twenty-two">10pm</div>
+      <div class="twenty-three">11pm</div>
+    </div>
+
+    <!-- calendar grid to hold box class for event objects -->
+    <div id=calendarGrid>
+      <div class="box">
+        <!-- empty class to be filled events -->
+      </div>
+    </div>
 </body>
 
 </html>
