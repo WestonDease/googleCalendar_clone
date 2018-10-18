@@ -1,43 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    
-
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Google Calendar</title>
+  <!--Link to stylesheets-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+crossorigin="anonymous"><!-- font awesome link-->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <div id="calendarTitle"></div>
-        <form>
-            <button id="arrowLeft"></button>
-            <button id="arrowRight"></button>
-            <select id="viewSelector">
-                    <option value="Year">Year</option>
-                    <option value="Month">Month</option>
-                    <option value="Week">Week</option>
-                    <option value="Day">Day</option>
-            </select>
-            <select id="docAdder">
-                    <option value="newCalendar">Calendar</option>
-                    <option value="newEvent">Event</option>
-            </select>
-            <select id="docSelect">
-                    <!--TO BE IMPLEMENTED IN SRCIPT-->
-            </select>
-        </form>
-    </header>
 
-    <body>
-        <div id="calendarGrid">
-            
-        </div>
-    </body>
+<body>
+  <!-- JS Links -->  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="./viewChange.js"></script>
+  <script src="./scroll.js"></script>
+  <div id="gridTitle">
+    <!-- define drop down as its own class so that it can be placed within gridTitle -->
+    <div class = "dropDown">
+            <!-- HTML form element for drop down menu -->
+            <select name="viewSelect">
+                <option value="month">month</option>
+                <option value="week">week</option>
+                <option value="day">day</option>
+              </select>
+    </div>
+  </div>
+  <div id="weekView">
+    <!-- top bar for days -->
+    <div class="buttonclass">
+      <button id="arrowleft" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-left"></i></button>
+      <button id="arrowright" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-right"></i></button>
+      <div class="month">1TEST1</div>
+      <div class="year">2TEST2</div>
+    </div>
+    <div class="topBar">
+      <div class="days">
+        <div class="mon">Monday</div>
+        <div class="tues">Tuesday</div>
+        <div class="wed">Wednesday</div>
+        <div class="thurs">Thursday</div>
+        <div class="fri">Friday</div>
+        <div class="sat">Saturday</div>
+        <div class="sun">Sunday</div>
+      </div>
+      <div class="dayNumbers">
+        <div class="date1"></div>
+        <div class="date2"></div>
+        <div class="date3"></div>
+        <div class="date4"></div>
+        <div class="date5"></div>
+        <div class="date6"></div>
+        <div class="date7"></div>
+      </div>
+    </div>
+
+    <!-- side bar for hours -->
+    <div class="hours">
+      <div class="zero">12am</div>
+      <div class="one">1am</div>
+      <div class="two">2am</div>
+      <div class="three">3am</div>
+      <div class="four">4am</div>
+      <div class="five">5am</div>
+      <div class="six">6am</div>
+      <div class="seven">7am</div>
+      <div class="eight">8am</div>
+      <div class="nine">9am</div>
+      <div class="ten">10am</div>
+      <div class="eleven">11am</div>
+      <div class="twelve">12pm</div>
+      <div class="thirteen">1pm</div>
+      <div class="fourteen">2pm</div>
+      <div class="fifteen">3pm</div>
+      <div class="sixteen">4pm</div>
+      <div class="seventeen">5pm</div>
+      <div class="eighteen">6pm</div>
+      <div class="nineteen">7pm</div>
+      <div class="twenty">8pm</div>
+      <div class="twenty-one">9pm</div>
+      <div class="twenty-two">10pm</div>
+      <div class="twenty-three">11pm</div>
+    </div>
+
+    <!-- calendar grid to hold box class for event objects -->
+    <div id=calendarGrid>
+      <div class="box">
+        <!-- empty class to be filled events -->
+      </div>
+    </div>
 </body>
+
 </html>
