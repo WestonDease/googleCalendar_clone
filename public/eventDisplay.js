@@ -7,7 +7,7 @@ $(function() {
     const render = function () {
   
       // Empty our output divs
-      $('#itemList').empty();
+      $('#calendarGrid').empty();
       
       // Run Queries!
       // ==========================================
@@ -66,7 +66,7 @@ $(function() {
             })
            );
           
-          output.append(listItem);
+          outputElement.append(listItem);
         }
         }
     }
@@ -76,18 +76,11 @@ $(function() {
       console.log('udating', entry);
       console.log(entry + " " + route);
       // Here we grab the form elements
-      var flipCheck;
-      console.log(entry.checked);
-      if (entry.checked === 'true'){
-        flipCheck = 'false';
-      } else {
-        flipCheck = 'true';
-      }
-      console.log(entry);
-      alert("now");
-      const itemShift = {
-        item: entry,
-        checked: flipCheck
+      const eventShift = {
+        name: prompt("new event name"),
+        description: prompt("new description"),
+        date: prompt("new date"),
+        time: prompt("new time")
       };
 
         for (let i; i < 0; i++){
@@ -103,7 +96,7 @@ $(function() {
         {
           url: `/api/${route}/${index}`,
           method: 'PUT' ,
-          data: itemShift 
+          data: eventShift 
         })
         .then(function(data) {
           
