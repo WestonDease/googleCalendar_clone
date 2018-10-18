@@ -22,5 +22,5 @@ function setView(){
 
 
 // call styleChange function when view is selected
-$('#dropDown').on('click', setview)
+$('#dropDown').on('click', setView)
 $('#dropDown').on('click', styleChange )
