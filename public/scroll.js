@@ -36,7 +36,6 @@ let dd = today.getDate();
 let mm = today.getMonth()+1; 
 let yyyy = today.getFullYear();
 let todayNumberDayOfWeek = getNumberDayOfWeek(mm, dd, yyyy);
-
 //array of the names of the months and monthName is assigned to current month
 const arrMonth = ["","January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"];
 let monthName = arrMonth[mm];
@@ -46,6 +45,8 @@ const arrDayTotal = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 $('.month').html(`${monthName}`);
 $('.year').html(`${yyyy}`);
 $(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
+let ddToday = dd;
+
 
 //loop to fill in the rest of the week
 let z = 0; //counter variable that holds the value of a date
@@ -71,8 +72,7 @@ for (let i = todayNumberDayOfWeek-1; i >= 1; i--) {
         $(`.date${diff+todayNumberDayOfWeek}`).html(`${z}`);
     }
 }
-
-
+$(`.date${todayNumberDayOfWeek}`)[0].style.color = "blue"; //today's date is blue
  //function to run when right arrow is clicked
 $('#arrowright').on('click', function (event) {
     event.preventDefault();
@@ -121,9 +121,14 @@ $('#arrowright').on('click', function (event) {
             $(`.date${i}`).html(parseFloat(x)+parseFloat(arrDayTotal[1]));
             
         }
+        if (parseFloat($(`.date5`).html())==(ddToday)) {
+            $(`.date${todayNumberDayOfWeek}`)[0].style.color = "blue";
+        }
+        else {
+            $(`.date${todayNumberDayOfWeek}`)[0].style.color = "black";
+        }
     }
 });
-
 //function to run when left arrow is clicked
 $('#arrowleft').on('click', function (event) {
     event.preventDefault();
@@ -168,7 +173,12 @@ $('#arrowleft').on('click', function (event) {
         if ($(`.date${i}`).html()<=0) {
             let x = $(`.date${i}`).html();
             $(`.date${i}`).html(parseFloat(x)+parseFloat(arrDayTotal[1]));
-            
+        }
+        if (parseFloat($(`.date5`).html())==(ddToday)) {
+            $(`.date${todayNumberDayOfWeek}`)[0].style.color = "blue";
+        }
+        else {
+            $(`.date${todayNumberDayOfWeek}`)[0].style.color = "black";
         }
     }
 
