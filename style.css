@@ -1,85 +1,240 @@
-#calendarTitle{
-    height: 200px;
-    width: 100%;
+/* Reset css */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
+
+/* Begin styling for googleCalendarClone */ 
+.body{
+    font-family: 'Roboto' ;
+    color: gray;
+}
+
+
+#Nav{
+    height: 75px;
+    width: 100%;
+    border: 5px black;
+}
+
+.calendarIcon{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.Title{
+    position: absolute;
+    top: 25px;
+    left: 75px;
+    font-family: 'roboto';
+    color: gray;
+}
+
+.whatDay{
+    position: absolute;
+    top: 25px;
+    left: 250px;    
+    font-family: 'roboto';
+}
+
+.buttonClass {
+    position: absolute;
+    top: 25px;
+    left: 350px;
+}
+
+.month{
+    position: absolute;
+    top: 25px;
+    left: 425px;
+    font-family: 'roboto';
+    color: gray;
+}
+
+.year{
+    position: absolute;
+    top: 25px;
+    left: 500px;
+    font-family: 'roboto';
+    color: gray;
+}
+
+.dropDown{
+    position:absolute;
+    top: 25px;
+    left: 600px;
+    font-family: 'roboto'
+}
+
+/* here is all the grid work... */
 /* 2x2 grid to contain all calendar elements */
 #weekView{
+    position: relative;
     display:grid;
-    grid-template-rows: 12% 88%;
-    grid-template-columns: 8% 92%;
-    border: 1px solid;
-
-}
-.buttonClass {
-    grid-row: 1;
-    grid-column: 1;
-    display: grid;
+    grid-template-rows: 100px 100%;
+    grid-template-columns: 4% 96%;
     border: 1px solid;
 }
 
-/* establishes a grid element for the days and day numbers to sit in */
-.topBar {
-    grid-row: 1;
-    grid-column: 2;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr;
-
+.emptyBox{
+    grid-row:1;
+    grid-column:1;
+    border: 1px solid;
 }
-/* sets 1x7 grid of days of the weeks */
+
+
+
+
+
+/* sets 1x7 grid of days of the weeks (same for dayNumbers) */
 .days{
-    grid-row: 1 ;
-    grid-column: 1 ;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(7, 1fr);
-    border: 1px solid;
+   font-family: 'roboto';
+   font-size: 10pt;
+   color: gray;
+   grid-row: 1 ;
+   grid-column: 2 ;
+   display: grid;
+   grid-template-rows: 1fr;
+   grid-template-columns: repeat(7, 1fr);
+   border: 1px gray;
 }
 .dayNumbers {
-    grid-row: 2;
-    grid-column: 1;
+    font-family: 'roboto';
+    font-size: 34pt;
+    color: gray;
+    grid-row: 1 ;
+    grid-column: 2 ;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(7, 1fr);
-    border: 1px solid;
+    border: 1px gray;
 }
     /* assign each day object to a grid space within "days" */
-        .mon{
+        .sun{
             display: block;
             grid-column: 1;
-            border: 1px solid;
+            border: 1px gray;
+        }
+
+        .mon{
+            display: block;
+            grid-column: 2;
+            border: 1px gray;
         }
 
         .tues{
             display: block;
-            grid-column: 2;                        
+            grid-column: 3;
+            border: 1px gray;                        
         }
 
         .wed{
             display: block;
-            grid-column: 3;
+            grid-column: 4;
+            border: 1px gray;
         }
 
         .thurs{
             display: block;
-            grid-column: 4;
+            grid-column: 5;
+            border: 1px gray;
         }
 
         .fri{
             display: block;
-            grid-column: 5;
+            grid-column: 6;
+            border: 1px gray;
         }
 
         .sat{
             display: block;
+            grid-column: 7;
+            border: 1px gray;
+        }
+
+        .date1{
+            display: block;
+            grid-column: 1;
+            border: 1px gray;
+        }
+
+        .date2{
+            display: block;
+            grid-column: 2;
+            border: 1px gray;
+        }
+
+        .date3{
+            display: block;
+            grid-column: 3;                        
+        }
+
+        .date4{
+            display: block;
+            grid-column: 4;
+        }
+
+        .date5{
+            display: block;
+            grid-column: 5;
+        }
+
+        .date6{
+            display: block;
             grid-column: 6;
         }
 
-        .sun{
+        .date7{
             display: block;
             grid-column: 7;
         }
+
 
 /* sets 24x1 grid of hour times */
 .hours{
@@ -89,17 +244,18 @@
     grid-template-rows: repeat(24, 1fr) ;
     grid-template-columns: 1;
     border: 1px solid;
+    font-family: 'roboto'
 }
 
     /* assign each hour object to a grid space within "hours"  */
         .zero{
             display: block;
             grid-row: 1;
-            border: 1px solid;
         }
 
         .one{
-
+            display: block;
+            grid-row: 2;
         }
 
         .two{

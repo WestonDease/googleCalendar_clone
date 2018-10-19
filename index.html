@@ -8,7 +8,7 @@
   <title>Google Calendar</title>
   <!--Link to stylesheets-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-crossorigin="anonymous"><!-- font awesome link-->
+      crossorigin="anonymous"><!-- font awesome link-->
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,34 +17,56 @@ crossorigin="anonymous"><!-- font awesome link-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="./viewChange.js"></script>
   <script src="./scroll.js"></script>
-  <div id="gridTitle">
-    <!-- define drop down as its own class so that it can be placed within gridTitle -->
-    <div class = "dropDown">
-            <!-- HTML form element for drop down menu -->
-            <select name="viewSelect">
-                <option value="month">month</option>
-                <option value="week">week</option>
-                <option value="day">day</option>
-              </select>
-    </div>
-  </div>
-  <div id="weekView">
-    <!-- top bar for days -->
-    <div class="buttonclass">
-      <button id="arrowleft" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-left"></i></button>
-      <button id="arrowright" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-right"></i></button>
+
+  <!-- Nav bar section -->
+  <div id="Nav">
+      <!-- style items in top -->
+      <div class = "calendarIcon">
+         <img src="images/calendar_48dp.png" alt="Icon">
+     </div>
+     <div class = "Title">
+         <p>Calendar</p>
+     </div>
+     <div class = "whatDay">
+       <p>TODAY</p>
+     </div>
+ 
+      <!-- button class for shifting arrows -->
+      <div class="buttonClass">
+         <button id="arrowleft" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-left"></i></button>
+         <button id="arrowright" type="submit" class="submit btn btn-primary"><i class="fas fa-angle-right"></i></button>
+      </div>
+      
+      <!-- Shows month and year -->
       <div class="month">1TEST1</div>
       <div class="year">2TEST2</div>
-    </div>
-    <div class="topBar">
+ 
+     <!-- define drop down for view select -->
+     <div class = "dropDown">
+         <select name = "viewSelect">
+             <option value = "month">month</option>
+             <option value = "week">week</option>
+             <option value = "day">day</option>
+          </select>
+     </div>
+  </div>
+
+
+  <!-- division for weekview construction -->
+  <div id = "weekView">
+    <!--empty box in top left corner-->
+    <div class = "emptyBox"></div>
+
+    <!-- top bar for days and day numbers-->
+    <div id="topBar">
       <div class="days">
-        <div class="mon">Monday</div>
-        <div class="tues">Tuesday</div>
-        <div class="wed">Wednesday</div>
-        <div class="thurs">Thursday</div>
-        <div class="fri">Friday</div>
-        <div class="sat">Saturday</div>
-        <div class="sun">Sunday</div>
+        <div class="sun">Sun</div>
+        <div class="mon">Mon</div>
+        <div class="tues">Tues</div>
+        <div class="wed">Wed</div>
+        <div class="thurs">Thu</div>
+        <div class="fri">Fri</div>
+        <div class="sat">Sat</div>
       </div>
       <div class="dayNumbers">
         <div class="date1"></div>
@@ -88,9 +110,10 @@ crossorigin="anonymous"><!-- font awesome link-->
     <!-- calendar grid to hold box class for event objects -->
     <div id=calendarGrid>
       <div class="box">
-        <!-- empty class to be filled events -->
+        <!-- empty class to be filled with events -->
       </div>
     </div>
+  </div>
 </body>
 
 </html>
