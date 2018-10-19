@@ -18,15 +18,34 @@ crossorigin="anonymous"><!-- font awesome link-->
   <script src="./viewChange.js"></script>
   <script src="./scroll.js"></script>
   <script src="eventDisplay.js"></script>
+  <script src="addEvent.js"></script>
   <div id="gridTitle">
     <!-- define drop down as its own class so that it can be placed within gridTitle -->
     <div class = "dropDown">
-            <!-- HTML form element for drop down menu -->
-            <select name="viewSelect">
-                <option value="month">month</option>
-                <option value="week">week</option>
-                <option value="day">day</option>
-              </select>
+      <!-- HTML form element for drop down menu -->
+      <select name="viewSelect">
+      <option value="month">month</option>
+      <option value="week">week</option>  
+      <option value="day">day</option>
+      </select>
+    </div>
+    <div>
+      <!-- Edit in CSS with form-popup class -->
+      <button class="open-button" onclick="openForm()">Add Event</button>
+      <div class="form popup" id="AddEventForm">
+        <form action="/public/addEvent.js" class="form-container">
+          <label for="name"><b>Event Name</b></label>
+          <input type="text" placeholder="Enter an Event Name" name="name" required>
+          <label for="description"><b>Event Description</b></label>
+          <input type="text" placeholder="Enter an Event Description" name="description">
+          <label for="date"><b>Event Date</b></label>
+          <input type="text" placeholder="Enter an Event Date" name="date" required>
+          <label for="time"><b>Event Time</b></label>
+          <input type="text" placeholder="Enter an Event Time" name="time">
+          <input type="button" class="btn add" onclick="addEvent()">Add Event</button>
+          <input type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
     </div>
   </div>
   <div id="weekView">
