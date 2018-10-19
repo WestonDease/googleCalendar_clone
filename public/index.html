@@ -18,7 +18,7 @@ crossorigin="anonymous"><!-- font awesome link-->
   <script src="./viewChange.js"></script>
   <script src="./scroll.js"></script>
   <script src="eventDisplay.js"></script>
-  <script src="addEvent.js"></script>
+
   <div id="gridTitle">
     <!-- define drop down as its own class so that it can be placed within gridTitle -->
     <div class = "dropDown">
@@ -33,17 +33,17 @@ crossorigin="anonymous"><!-- font awesome link-->
       <!-- Edit in CSS with form-popup class -->
       <button class="open-button" onclick="openForm()">Add Event</button>
       <div class="form popup" id="AddEventForm">
-        <form action="/public/addEvent.js" class="form-container">
+        <form class="form-container">
           <label for="name"><b>Event Name</b></label>
-          <input type="text" placeholder="Enter an Event Name" name="name" required>
+          <input id="event-name" type="text" placeholder="Enter an Event Name" name="name" required>
           <label for="description"><b>Event Description</b></label>
-          <input type="text" placeholder="Enter an Event Description" name="description">
+          <input id="event-desc" type="text" placeholder="Enter an Event Description" name="description">
           <label for="date"><b>Event Date</b></label>
-          <input type="text" placeholder="Enter an Event Date" name="date" required>
+          <input id="event-date" type="text" placeholder="Enter an Event Date" name="date" required>
           <label for="time"><b>Event Time</b></label>
-          <input type="text" placeholder="Enter an Event Time" name="time">
-          <input type="button" class="btn add" onclick="addEvent()">Add Event</button>
-          <input type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          <input id="event-time" type="text" placeholder="Enter an Event Time" name="time">
+          <input id="save-event" type="button" class="btn add" onclick="addEvent()">Add Event</button>
+          <input id="cancel-new-event" type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </form>
       </div>
     </div>
@@ -58,13 +58,13 @@ crossorigin="anonymous"><!-- font awesome link-->
     </div>
     <div class="topBar">
       <div class="days">
-        <div class="mon">Monday</div>
-        <div class="tues">Tuesday</div>
-        <div class="wed">Wednesday</div>
-        <div class="thurs">Thursday</div>
-        <div class="fri">Friday</div>
-        <div class="sat">Saturday</div>
-        <div class="sun">Sunday</div>
+        <div class="mon">Sun</div>
+        <div class="tues">Mon</div>
+        <div class="wed">Tue</div>
+        <div class="thurs">Wed</div>
+        <div class="fri">Thu</div>
+        <div class="sat">Sat</div>
+        <div class="sun">Sun</div>
       </div>
       <div class="dayNumbers">
         <div class="date1"></div>
@@ -111,6 +111,8 @@ crossorigin="anonymous"><!-- font awesome link-->
         <!-- empty class to be filled events -->
       </div>
     </div>
+
+    <script src="addEvent.js"></script>
 </body>
 
 </html>
