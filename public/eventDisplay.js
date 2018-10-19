@@ -3,9 +3,9 @@
 $(function() {
     // In this code, jQuery is used to 'download' the data from our server
     // We then dynamically display this content in our table. This is very similar to the group projects you just completed.
-  
+    
     const render = function () {
-  
+      
       // Empty our output divs
       $('#calendarGrid').empty();
       
@@ -16,60 +16,58 @@ $(function() {
   
     const renderListItems = function (outputElement, dataList) {
       
-    let monthConvert = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      console.log(month);
+        console.log(year);
+        console.log(day);
+
+      let monthConvert = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         
     // Loop through and display each of the customers
       for (let i = 0; i < dataList.length; i++) {
-  
         
 
         //CHECK "date(number) month year"
-        let year = dataList[i].date.split('-', 0);
-        let month = dataList[i].date.split('-', 1);
+        let year = dataList[i].date.split('-', 1)[0];
+        let month = parseInt(dataList[i].date.split('-', 1)[1]);
         month = monthConvert[month];
-        let day = "date" + dataList[i].date.split('-', 2);
+        let day = "date" + dataList[i].date.split('-', 1)[2];
+        
+        console.log(month);
+        console.log(year);
+        console.log(day);
 
-        if ( year === $("year") && month === $("month")) {
+        if ( year === $("year").text() && month === $("month").text()) {
           let output = `date${day}`//add to this if it exists
-
+          console.log("its passed");
           if ($(output) && $(output) !== null && $(output) !== undefined) {
+            console.log("its extra passed");
           // Then display the input feild (list item) in the HTML
           // Adds an id for editing and deleting
-          const listItem = 
+          const listItem =
             $('<p>')
               .attr('class', 'event');
         
             //appends name
           listItem.append(
-            $('<p>').text(dataList[i].name)
+            $('<p>').text(dataList[i].name + " " + dataList[i].description + " " + dataList.time)
           );
-            
-          //appends description
-          listItem.append(
-            $('<p>').text(dataList[i].description)
-          );
-
-          //appends time
-          listItem.append(
-            $('<p>').text(dataList[i].time)
-          );
-
+          
           listItem.append(
             $(`<button>`).on('click', function() {
-                 sendItemUpdates( dataList[i].item , 'items');
+                 sendItemUpdates( dataList[i].Event , dataList[i].date);
             })
            );
 
            listItem.append(
             $(`<button>`).on('click', function() {
-                deleteSelected( dataList[i].item , 'items');
+                deleteSelected( dataList[i].Event , dataList[i].date);
             })
            );
           
           outputElement.append(listItem);
         }
-        }
-    }
+      }
+     }
     }
   
     function sendItemUpdates(entry, route) {
@@ -88,13 +86,10 @@ $(function() {
         }
       
       
-      // Grab the index from the end of the entry
-      const index = entry.split('-')[1];
-      console.log(index);
       // Make the PUT request
       $.ajax(
         {
-          url: `/api/${route}/${index}`,
+          url: `/api/events/${route}`,
           method: 'PUT' ,
           data: eventShift 
         })
@@ -134,11 +129,10 @@ $(function() {
     }
   
     const runItemQuery = function () {
-  
       // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
       $.ajax({ url: '/api/events', method: 'GET' })
-        .then(function(todoItems) {
-          renderListItems('#calendarGrid', todoItems);
+        .then(function(data) {
+          renderListItems('#calendarGrid', data);
         });
     }
   
@@ -148,7 +142,7 @@ $(function() {
   
       // Clear the tables on the server and then empty the elements on the client
       $.ajax({ url: '/api/clear', method: 'POST' }).then(function() {
-        $('#itemList').empty();
+        $('#calendarGrid').empty();
       });
     }
   
