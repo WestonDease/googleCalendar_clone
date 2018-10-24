@@ -12,30 +12,13 @@ const getNumberDayOfWeek = function(month, day, year) {
     return dayNum+1;
 };
 
-//render function using ajax
-// const render = function() {
-//     $('.box').empty();
-//     $.ajax({ url: '/api/calendar', method: 'GET' })
-//           .then(function (data) {
-//               let htmlstr = '';
-//               data.forEach(element => {
-//                 htmlstr += `<h5 class="card-title">${element.content}</h5>`;
-//                 htmlstr += `<i id="xButton" class="fas fa-times"></i>`;
-//                 htmlstr += `</div>`;
-//               });
-//               $('#holder').html(htmlstr);
-//           })
-//           .catch(function (err) {
-//               console.log(err);
-//           });
-// }
-
 //today's date and all the parameters of the date and time
 let today = new Date(); 
 let dd = today.getDate();
 let mm = today.getMonth()+1; 
 let yyyy = today.getFullYear();
 let todayNumberDayOfWeek = getNumberDayOfWeek(mm, dd, yyyy);
+
 //array of the names of the months and monthName is assigned to current month
 const arrMonth = ["","January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"];
 let monthName = arrMonth[mm];
@@ -48,36 +31,44 @@ $(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
 let ddToday = dd;
 
 
-//loop to fill in the rest of the week
-let z = 0; //counter variable that holds the value of a date
-for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
-    let diff = i - todayNumberDayOfWeek;
+//loop to fill in the rest of the first week
+const arr17 = [1, 2, 3, 4, 5, 6, 7];
+const arrLoopUp = arr17.filter(e => e > todayNumberDayOfWeek); //gets days of the week to the right of today
+
+let z = 0;
+arrLoopUp.forEach(function(element) {
+    let diff = element - todayNumberDayOfWeek;
     if (dd+diff < arrDayTotal[mm]) {
         $(`.date${diff+todayNumberDayOfWeek}`).html(`${dd+diff}`);
     }
-    else {
+    else {//new month has started
         z = z + 1;
         $(`.date${diff+todayNumberDayOfWeek}`).html(`${z}`);
     }
-}
+});
+
+const arrLoopDown = arr17.filter(e => e < todayNumberDayOfWeek); //gets days of the week to the left of today
 
 z = arrDayTotal[mm-1] + 1;
-for (let i = todayNumberDayOfWeek-1; i >= 1; i--) {
-    let diff = todayNumberDayOfWeek - i;
+arrLoopDown.forEach(function(element) {
+    let diff = todayNumberDayOfWeek - element;
     if (dd+diff > 0) {
-        $(`.date${todayNumberDayOfWeek-diff}`).html(`${dd-diff}`);
+        $(`.date${element}`).html(`${dd-diff}`);
     }
-    else {
+    else {//previous month
         z = z - 1;
         $(`.date${diff+todayNumberDayOfWeek}`).html(`${z}`);
     }
-}
+});
+
 $(`.date${todayNumberDayOfWeek}`)[0].style.color = "blue"; //today's date is blue
+
  //function to run when right arrow is clicked
 $('#arrowright').on('click', function (event) {
     event.preventDefault();
-    dd = dd + 7;
-    if (dd > arrDayTotal[mm]) {
+
+    dd = dd + 7; //next week
+    if (dd > arrDayTotal[mm]) {//handles month and year crossovers
         dd = dd - arrDayTotal[mm];
         mm = mm + 1;
         if (mm == 13) {
@@ -93,47 +84,51 @@ $('#arrowright').on('click', function (event) {
         }
     }
     $(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
+
     z = 0;
-    for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
-        let diff = i - todayNumberDayOfWeek;
+    arrLoopUp.forEach(function(element) {
+        let diff = element - todayNumberDayOfWeek;
         if ((dd+diff) <= arrDayTotal[mm]) {
-            $(`.date${i}`).html(`${dd+diff}`);
+            $(`.date${element}`).html(`${dd+diff}`);
         }
         else {
             z = z + 1;
-            $(`.date${i}`).html(`${z}`);
+            $(`.date${element}`).html(`${z}`);
         }
-    }
+    });
+        
     z = 0;
-    for (let i = 1; i <= todayNumberDayOfWeek; i++) {
-        let diff = todayNumberDayOfWeek - i;
+    arrLoopDown.forEach(function(element) {
+        let diff = todayNumberDayOfWeek - element;
         if (dd-diff <= arrDayTotal[mm]) {
-            $(`.date${i}`).html(`${dd-diff}`);
+            $(`.date${element}`).html(`${dd-diff}`);
         }
         else {
             z = z + 1;
-            $(`.date${i}`).html(`${z}`);
+            $(`.date${element}`).html(`${z}`);
         }
-    }
-    for (let i = 1; i <= 7; i++) {
-        if ($(`.date${i}`).html()<=0) {
-            let x = $(`.date${i}`).html();
-            $(`.date${i}`).html(parseFloat(x)+parseFloat(arrDayTotal[1]));
+    });
+        
+    arr17.forEach(function(element) {
+        if ($(`.date${element}`).html()<=0) {
+            let x = $(`.date${element}`).html();
+            $(`.date${element}`).html(parseFloat(x)+parseFloat(arrDayTotal[1]));
             
         }
-        if (parseFloat($(`.date5`).html())==(ddToday)) {
+        if (parseFloat($(`.date${todayNumberDayOfWeek}`).html())==(ddToday)) {
             $(`.date${todayNumberDayOfWeek}`)[0].style.color = "blue";
         }
         else {
             $(`.date${todayNumberDayOfWeek}`)[0].style.color = "black";
         }
-    }
+    });
 });
 //function to run when left arrow is clicked
 $('#arrowleft').on('click', function (event) {
     event.preventDefault();
-    dd = dd - 7;
-    if (dd <= 0) {
+
+    dd = dd - 7;//next week
+    if (dd <= 0) {//handles month and year crossovers
         mm = mm - 1;
         dd = arrDayTotal[mm] + dd;
         if (mm == 0) {
@@ -148,39 +143,41 @@ $('#arrowleft').on('click', function (event) {
 
     $(`.date${todayNumberDayOfWeek}`).html(`${dd}`);
     z = 0;
-    for (let i = todayNumberDayOfWeek+1; i <= 7; i++) {
-        let diff = i - todayNumberDayOfWeek;
+    arrLoopUp.forEach(function(element) {
+        let diff = element - todayNumberDayOfWeek;
         if (dd+diff <= arrDayTotal[mm]) {
-            $(`.date${i}`).html(`${dd+diff}`);
+            $(`.date${element}`).html(`${dd+diff}`);
         }
         else {
             z = z + 1;
-            $(`.date${i}`).html(`${z}`);
+            $(`.date${element}`).html(`${z}`);
         }
-    }
+    });
+
     z = arrDayTotal[mm-1] + 1;
-    for (let i = 1; i <= todayNumberDayOfWeek; i++) {
-        let diff = todayNumberDayOfWeek - i;
+    arrLoopDown.forEach(function(element) {
+        let diff = todayNumberDayOfWeek - element;
         if (dd-diff > 0) {
-            $(`.date${i}`).html(`${dd-diff}`);
+            $(`.date${element}`).html(`${dd-diff}`);
         }
         else {
             z = z - 1;
-            $(`.date${i}`).html(`${z}`);
+            $(`.date${element}`).html(`${z}`);
         }
-    }
-    for (let i = 1; i <= 7; i++) {
-        if ($(`.date${i}`).html()<=0) {
-            let x = $(`.date${i}`).html();
-            $(`.date${i}`).html(parseFloat(x)+parseFloat(arrDayTotal[1]));
+    });
+
+    arr17.forEach(function(element) {
+        if ($(`.date${element}`).html()<=0) {
+            let x = $(`.date${element}`).html();
+            $(`.date${element}`).html(parseFloat(x)+parseFloat(arrDayTotal[1]));
         }
-        if (parseFloat($(`.date5`).html())==(ddToday)) {
+        if (parseFloat($(`.date${todayNumberDayOfWeek}`).html())==(ddToday)) {
             $(`.date${todayNumberDayOfWeek}`)[0].style.color = "blue";
         }
         else {
             $(`.date${todayNumberDayOfWeek}`)[0].style.color = "black";
         }
-    }
+    });
 
 });
 
