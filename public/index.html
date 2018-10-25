@@ -9,7 +9,7 @@
   <!--Link to stylesheets-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 crossorigin="anonymous"><!-- font awesome link-->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -20,6 +20,7 @@ crossorigin="anonymous"><!-- font awesome link-->
   <script src="eventDisplay.js"></script>
   <script src="./eventDisplay.js"></script>
   <script src="./addEvent.js"></script>
+  <script src="addEvent.js"></script>
   <div id="gridTitle">
     <!-- define drop down as its own class so that it can be placed within gridTitle -->
     <div class = "dropDown">
@@ -43,7 +44,7 @@ crossorigin="anonymous"><!-- font awesome link-->
           <input id="event-date" type="text" placeholder="Enter an Event Date" name="date" required>
           <label for="time"><b>Event Time</b></label>
           <input id="event-time" type="text" placeholder="Enter an Event Time" name="time">
-          <input id="save-event" type="button" class="btn add" onclick="addEvent()">Add Event</button>
+          <input id="save-event" type="button" class="btn add" onclick="saveEvent()">Add Event</button>
           <input id="cancel-new-event" type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </form>
       </div>
@@ -113,7 +114,7 @@ crossorigin="anonymous"><!-- font awesome link-->
       </div>
     </div>
 
-    <script src="addEvent.js"></script>
+    
 </body>
 
 </html>

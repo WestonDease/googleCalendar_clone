@@ -119,7 +119,7 @@ $('#arrowright').on('click', function (event) {
             $(`.date${todayNumberDayOfWeek}`)[0].style.color = "blue";
         }
         else {
-            $(`.date${todayNumberDayOfWeek}`)[0].style.color = "black";
+            $(`.date${todayNumberDayOfWeek}`)[0].style.color = "gray";
         }
     });
 });
@@ -175,7 +175,7 @@ $('#arrowleft').on('click', function (event) {
             $(`.date${todayNumberDayOfWeek}`)[0].style.color = "blue";
         }
         else {
-            $(`.date${todayNumberDayOfWeek}`)[0].style.color = "black";
+            $(`.date${todayNumberDayOfWeek}`)[0].style.color = "gray";
         }
     });
 
